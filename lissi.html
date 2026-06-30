@@ -2,276 +2,422 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Mi Persona Favorita</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>💌 Carta para Lissi</title>
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        /* --- RESET Y BASE --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        body{
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffe3e3 0%, #fbc2eb 100%);
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:20px;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+            padding: 16px;
+            /* IMAGEN DE FONDO (cámbiala por la tuya) */
+            background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
         }
 
-        .card{
-            width:100%;
-            max-width:500px;
-            background:rgba(255,255,255,0.88);
-            backdrop-filter: blur(10px);
-            border-radius:25px;
-            padding:30px;
-            text-align:center;
-            box-shadow:0 10px 30px rgba(0,0,0,0.12);
+        /* Capa oscura para legibilidad */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.50);
+            backdrop-filter: blur(5px);
+            z-index: 0;
         }
 
-        h1{
-            color:#d63447;
-            margin-bottom:10px;
-            font-size:2rem;
+        /* --- CARTA --- */
+        .card-container {
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 600px;
+            width: 100%;
+            padding: 30px 28px 35px;
+            border-radius: 28px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
         }
 
-        .heart{
-            font-size:2rem;
-            color:#e23e57;
-            animation:pulse 1.2s infinite;
-            margin-bottom:15px;
+        /* Sobre decorativo */
+        .card-container::before {
+            content: "✉️";
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+            background: #fff;
+            padding: 0 18px;
+            border-radius: 60px;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
         }
 
-        /* CARRUSEL */
-
-        .carousel{
-            position:relative;
-            width:100%;
-            height:380px;
-            overflow:hidden;
-            border-radius:20px;
-            margin-bottom:25px;
-            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        /* --- ENCABEZADO --- */
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+            border-bottom: 2px dashed #f8bbd0;
+            padding-bottom: 14px;
         }
 
-        .slides{
-            display:flex;
-            height:100%;
-            transition:transform 0.5s ease;
+        .header h1 {
+            color: #880e4f;
+            font-size: 2.0rem;
+            letter-spacing: 1px;
         }
 
-        .slide{
-            min-width:100%;
-            position:relative;
+        .header .sub {
+            color: #ad1457;
+            font-style: italic;
+            font-size: 1.05rem;
         }
 
-        .slide img{
-            width:100%;
-            height:100%;
-            object-fit:cover;
+        /* --- CUERPO DE LA CARTA --- */
+        .letter-body {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #3e2723;
+            text-align: justify;
+            background: rgba(255, 250, 252, 0.7);
+            border-radius: 16px;
+            padding: 22px 20px;
+            box-shadow: inset 0 0 20px rgba(255, 182, 193, 0.1);
+            margin-bottom: 28px;
         }
 
-        .caption{
-            position:absolute;
-            bottom:0;
-            width:100%;
-            padding:20px;
-            background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color:white;
-            text-align:left;
+        .letter-body p {
+            margin-bottom: 16px;
+            text-indent: 20px;
         }
 
-        .caption h2{
-            font-size:1.3rem;
-            margin-bottom:5px;
+        .letter-body p:last-of-type {
+            margin-bottom: 0;
         }
 
-        .caption p{
-            font-size:0.95rem;
-            line-height:1.4;
+        .highlight {
+            color: #c2185b;
+            font-weight: bold;
+            background: linear-gradient(120deg, #fce4ec 0%, #fce4ec 40%, transparent 80%);
+            padding: 0 6px;
+            border-radius: 4px;
         }
 
-        .btn{
-            position:absolute;
-            top:50%;
-            transform:translateY(-50%);
-            width:40px;
-            height:40px;
-            border:none;
-            border-radius:50%;
-            background:rgba(255,255,255,0.75);
-            cursor:pointer;
-            font-size:20px;
-            color:#d63447;
-            transition:0.3s;
-            z-index:10;
+        .fecha {
+            display: inline-block;
+            background: #880e4f;
+            color: #fff;
+            padding: 3px 18px;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            margin: 4px 0;
+            box-shadow: 0 3px 10px rgba(136,14,79,0.3);
         }
 
-        .btn:hover{
-            background:white;
+        /* --- CONTENEDOR DE BOTONES (FIJOS) --- */
+        .actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            min-height: 80px;
+            position: relative;
         }
 
-        .prev{
-            left:10px;
+        /* Botón SÍ */
+        .btn-yes {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 16px 44px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #2e7d32;
+            transition: all 0.15s ease;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 1px;
+            flex: 0 1 auto;
+            min-width: 160px;
+            touch-action: manipulation;
         }
 
-        .next{
-            right:10px;
+        .btn-yes:hover {
+            transform: scale(1.04);
+            background: #43a047;
         }
 
-        .dots{
-            display:flex;
-            justify-content:center;
-            gap:8px;
-            margin-bottom:20px;
+        .btn-yes:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #2e7d32;
         }
 
-        .dot{
-            width:10px;
-            height:10px;
-            border-radius:50%;
-            background:#f5a3b7;
-            cursor:pointer;
-            transition:0.3s;
+        /* Botón NO (fijo, sin moverse) */
+        .btn-no {
+            background: #e53935;
+            color: white;
+            border: none;
+            padding: 16px 44px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #b71c1c;
+            transition: all 0.15s ease;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 1px;
+            flex: 0 1 auto;
+            min-width: 160px;
+            touch-action: manipulation;
         }
 
-        .dot.active{
-            background:#d63447;
-            transform:scale(1.2);
+        .btn-no:hover {
+            background: #d32f2f;
+            transform: scale(1.04);
         }
 
-        .message{
-            line-height:1.7;
-            color:#555;
-            margin-bottom:20px;
+        .btn-no:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 #b71c1c;
         }
 
-        .counter{
-            background:#fff;
-            padding:12px;
-            border-radius:12px;
-            font-weight:bold;
-            color:#d63447;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        /* --- MENSAJE DE RESPUESTA (oculto hasta que se pulse SÍ) --- */
+        .response-message {
+            display: none;
+            text-align: center;
+            padding: 10px 0;
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
         }
 
-        @keyframes pulse{
-            0%{transform:scale(1);}
-            50%{transform:scale(1.15);}
-            100%{transform:scale(1);}
+        .response-message .big-heart {
+            font-size: 4rem;
+            display: block;
+            margin: 8px 0;
+            animation: pulse 1.8s infinite;
         }
 
-        @media(max-width:500px){
-            .carousel{
-                height:320px;
+        .response-message .title {
+            font-size: 2.0rem;
+            color: #880e4f;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .requisitos {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            border-radius: 16px;
+            padding: 22px 18px;
+            margin: 18px 0;
+            text-align: left;
+            border-left: 5px solid #880e4f;
+            box-shadow: 0 4px 18px rgba(136,14,79,0.12);
+        }
+
+        .requisitos h3 {
+            color: #880e4f;
+            font-size: 1.3rem;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .requisitos ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requisitos ul li {
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 12px;
+            font-size: 1.05rem;
+            color: #3e2723;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .requisitos ul li::before {
+            content: "✨";
+            font-size: 1.5rem;
+        }
+        .requisitos ul li:last-child::before {
+            content: "👗";
+        }
+
+        .firma-final {
+            margin-top: 18px;
+            font-size: 1.2rem;
+            color: #4caf50;
+            font-weight: bold;
+            text-align: center;
+            background: rgba(76,175,80,0.08);
+            padding: 12px;
+            border-radius: 30px;
+            border: 2px dashed #4caf50;
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes pop {
+            0% { transform: scale(0) rotate(-6deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- RESPONSIVE (TELÉFONOS) --- */
+        @media (max-width: 550px) {
+            .card-container {
+                padding: 24px 16px 28px;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .letter-body {
+                font-size: 1rem;
+                padding: 16px 14px;
+            }
+            .fecha {
+                font-size: 1.0rem;
+                padding: 2px 14px;
+            }
+
+            /* Botones en columna y ocupan todo el ancho */
+            .actions {
+                flex-direction: column;
+                gap: 18px;
+                min-height: 140px;
+            }
+
+            .btn-yes,
+            .btn-no {
+                width: 100%;
+                max-width: 280px;
+                padding: 18px 20px;
+                font-size: 1.4rem;
+                min-width: unset;
+            }
+
+            .response-message .title {
+                font-size: 1.5rem;
+            }
+            .requisitos ul li {
+                font-size: 0.95rem;
+                padding: 10px 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .btn-yes,
+            .btn-no {
+                font-size: 1.2rem;
+                padding: 15px 12px;
+                max-width: 240px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
+<div class="card-container" id="cardContainer">
 
-        <div class="carousel">
-
-            <div class="slides" id="slides">
-
-                <!-- SLIDE 1 -->
-                <div class="slide">
-                    <img src="Fotos/WhatsApp Image 2026-05-16 at 2.14.09 PM.jpeg">
-
-                    <div class="caption">
-                        <h2>Nuestros momentos ❤️</h2>
-                        <p>
-                            Cada recuerdo contigo se vuelve especial y queda guardado para siempre en mi corazón.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- SLIDE 2 -->
-                <div class="slide">
-                    <img src="Fotos/WhatsApp Image 2026-05-16 at 3.07.17 PM (1).jpeg">
-
-                    <div class="caption">
-                        <h2>Tu sonrisa ✨</h2>
-                        <p>
-                            Tu sonrisa tiene el poder de alegrar incluso mis días más difíciles.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- SLIDE 3 -->
-                <div class="slide">
-                    <img src="Fotos/WhatsApp Image 2026-05-16 at 3.07.17 PM (2).jpeg">
-
-                    <div class="caption">
-                        <h2>Siempre tú 💖</h2>
-                        <p>
-                            No importa el lugar ni el momento, siempre eres mi persona favorita.
-                        </p>
-                    </div>
-                </div>
-
-            </div>
-
-            <button class="btn prev" onclick="prevSlide()">❮</button>
-            <button class="btn next" onclick="nextSlide()">❯</button>
-
-        </div>
-
-        <div class="dots">
-            <span class="dot active" onclick="goToSlide(0)"></span>
-            <span class="dot" onclick="goToSlide(1)"></span>
-            <span class="dot" onclick="goToSlide(2)"></span>
-        </div>
-
-        <h1>¡Hola, Lissi! ❤️</h1>
-
-        <div class="heart">❤️</div>
-
-        <p class="message">
-            Se que no sere el hombre perfecto pero cada dia trato de mejorar por ti para hacerte la mujer mas feliz del mundo.
-        </p>
-
-
+    <div class="header">
+        <h1>💌 Para Lissi</h1>
+        <div class="sub">— Con todo mi cariño —</div>
     </div>
 
-    <script>
-        let currentSlide = 0;
+    <div class="letter-body">
+        <p>
+            <span class="highlight">Lissi amor</span>, 
+            me gustaría invitarte a salir el <span class="fecha">📅 24 de Julio</span>. 
+            Reserva esa fecha para mí, quiero salir contigo y darte lo que mereces.
+        </p>
+        <p>
+            Amor, en todo este tiempo estando contigo la pasé de maravilla, 
+            no me arrepiento de nada y sé que en esta vida te escogí, 
+            y en las siguientes también lo haría. ❤️
+        </p>
+        <p style="text-align: right; font-style: italic; color: #880e4f; text-indent: 0;">
+            — Con amor, tu persona especial.
+        </p>
+    </div>
 
-        const slides = document.getElementById("slides");
-        const dots = document.querySelectorAll(".dot");
-        const totalSlides = 3;
+    <!-- BOTONES -->
+    <div class="actions" id="actionsContainer">
+        <button class="btn-yes" id="btnYes">✅ Sí, acepto</button>
+        <button class="btn-no" id="btnNo">❌ No, gracias</button>
 
-        function updateSlide(){
-            slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+        <!-- Mensaje que aparece al pulsar SÍ -->
+        <div class="response-message" id="responseMessage">
+            <span class="big-heart">💖</span>
+            <div class="title">¡Sabía que dirías que SÍ! 🥰</div>
+            <div class="requisitos">
+                <h3>📋 Requisitos para nuestra cita</h3>
+                <ul>
+                    <li><strong>Disponibilidad:</strong> Tarde y noche del <strong>23 de julio</strong> y <strong>todo el 24</strong> (¡te quiero para mí todo ese tiempo!)</li>
+                    <li><strong>Vestimenta:</strong> Ropa bonita o vestido (quiero verte radiante como siempre ✨)</li>
+                </ul>
+            </div>
+            <div class="firma-final">
+                ❤️ ¡Nos vemos el 24! Te espero con ansias ❤️
+            </div>
+        </div>
+    </div>
 
-            dots.forEach(dot => dot.classList.remove("active"));
-            dots[currentSlide].classList.add("active");
-        }
+</div>
 
-        function nextSlide(){
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlide();
-        }
+<script>
+    (function() {
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const responseMsg = document.getElementById('responseMessage');
+        const card = document.getElementById('cardContainer');
 
-        function prevSlide(){
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlide();
-        }
+        // --- BOTÓN SÍ ---
+        btnYes.addEventListener('click', function() {
+            btnYes.style.display = 'none';
+            btnNo.style.display = 'none';
+            responseMsg.style.display = 'block';
+            card.style.borderColor = '#4caf50';
+            card.style.boxShadow = '0 30px 80px rgba(76, 175, 80, 0.4)';
+            responseMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
 
-        function goToSlide(index){
-            currentSlide = index;
-            updateSlide();
-        }
+        // --- BOTÓN NO (solo muestra un mensaje de cortesía, sin moverse) ---
+        btnNo.addEventListener('click', function() {
+            alert('😊 Entiendo, tal vez en otra ocasión. Siempre estaré aquí para ti.');
+            // Opcional: también puedes redirigir o hacer algo más, como cambiar el texto del botón.
+            // Pero lo dejamos así para que sea amable.
+        });
 
-        // Automático
-        setInterval(nextSlide, 4000);
-    </script>
+    })();
+</script>
 
 </body>
 </html>
